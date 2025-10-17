@@ -1,0 +1,30 @@
+services:
+  postgres:
+    build: docker/postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: practice
+      POSTGRES_PASSWORD: practice
+      POSTGRES_DB: practice_db
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_INITDB_ARGS: --encoding=UTF-8 --locale=C
+      LANG: ja_JP.utf8
+      TZ: Asia/Tokyo
+    volumes:
+      - set_up_ts_backend_data:/var/lib/postgresql/data
+    user: "999:999" # この行を追加
+
+  pgadmin:
+    depends_on:
+      - postgres
+    image: dpage/pgadmin4:latest
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      TZ: Asia/Tokyo
+
+volumes:
+  set_up_ts_backend_data:

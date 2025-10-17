@@ -5,6 +5,11 @@
   "repository": "https://github.com/yoshimitakuto/set-up-ts-backend.git",
   "author": "YoshimiTakuto <takuto.yoshimi@ncdc.co.jp>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
   "devDependencies": {
     "@types/node": "^24.8.1",
     "prisma": "^6.17.1",
